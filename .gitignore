@@ -1,0 +1,7 @@
+.idea/
+.gradle/
+*.iml
+#mall_config.properties
+pom.xml.versionsBackup
+target/
+logs/

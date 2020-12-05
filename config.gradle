@@ -1,0 +1,10 @@
+ext {
+    MAVEN_REPOSITORIES="http://192.168.1.195:8822/nexus/content/groups/public/"
+
+    MAVEN_REPO_RELEASE_URL = "http://192.168.1.195:8822/nexus/content/repositories/releases/"
+    MAVEN_REPO_SNAPSHOT_URL = "http://192.168.1.195:8822/nexus/content/repositories/snapshots/"
+    MAVEN_DEPLOY_USER = "admin"
+    MAVEN_DEPLOY_PASSWORD = "fqtdtihfhq"
+
+    PROJECT_VERSION="1.0-SNAPSHOT"
+}

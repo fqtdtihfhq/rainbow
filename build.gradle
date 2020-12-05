@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+apply from: "${rootDir}/config.gradle"
+
+group 'cloud.tengyee'
+version PROJECT_VERSION
+
+sourceCompatibility = 1.8
+
+
+apply from: "${rootDir}/uploadToMaven.gradle"
+
+repositories {
+    maven {
+        //maven私服仓库
+        url MAVEN_REPOSITORIES
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.shigu.main:shigu-main-business-api:5.0.28-SNAPSHOT'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
