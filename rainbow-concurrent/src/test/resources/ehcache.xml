@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <diskStore path="java.io.tmpdir" />
+
+    <!--<cacheManagerPeerProviderFactory class="net.sf.ehcache.distribution.jgroups.JGroupsCacheManagerPeerProviderFactory"-->
+                                     <!--properties="connect=TCP(bind_addr=114.55.15.212;bind_port=30003):-->
+<!--TCPPING(initial_hosts=114.55.15.212[30002],114.55.15.212[30003],115.236.23.213[30100],115.236.23.213[30101];port_range=1;timeout=5000;num_initial_members=4):-->
+                            <!--MERGE2(min_interval=3000;max_interval=5000):-->
+                            <!--FD_ALL(interval=5000;timeout=20000):-->
+                            <!--FD(timeout=5000;max_tries=48;):-->
+                            <!--VERIFY_SUSPECT(timeout=1500):-->
+                            <!--pbcast.NAKACK(retransmit_timeout=100,200,300,600,1200,2400,4800;discard_delivered_msgs=true):-->
+                            <!--pbcast.STABLE(stability_delay=1000;desired_avg_gossip=20000;max_bytes=0):-->
+                            <!--pbcast.GMS(print_local_addr=true;join_timeout=5000)"-->
+                                     <!--propertySeparator="::" />-->
+
+    <defaultCache maxElementsInMemory="1000" eternal="false"
+                  timeToIdleSeconds="1" timeToLiveSeconds="1" overflowToDisk="true" />
+
+    <cache name="cacheTest" maxElementsInMemory="1000" eternal="false"
+           timeToIdleSeconds="600" timeToLiveSeconds="1200" overflowToDisk="true" />
+
+</ehcache>

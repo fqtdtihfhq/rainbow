@@ -20,6 +20,5 @@ repositories {
 }
 
 dependencies {
-    compile 'com.shigu.main:shigu-main-business-api:5.0.28-SNAPSHOT'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

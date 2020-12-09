@@ -1,3 +1,3 @@
 rootProject.name = 'rainbow'
-include 'rainbow-cache'
+include 'rainbow-concurrent'
 
