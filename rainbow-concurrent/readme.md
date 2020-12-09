@@ -1,3 +1,14 @@
+# 安装方法
+
+* maven依赖
+```xml
+<dependency>
+  <groupId>cloud.tengyee</groupId>
+  <artifactId>rainbow-concurrent</artifactId>
+  <version>版本号</version>
+</dependency>
+```
+
 # 1.0.0
 
 ### redis缓存功能
@@ -64,7 +75,7 @@ host、port、password、database为redis配置，分别为redis的地址、端�
     </bean>
 ```
 
-那么注解时需要有所体现
+那么注解时需要把cacheManager的name设置进去，如果此时使用默认cacheManager则不用设置。
 ```java
     @Cacheable(value="cacheTest",cacheManager = "redisCacheManager",key = "'hello'+#name",sync = true)
     public ReturnData hello(String name){
