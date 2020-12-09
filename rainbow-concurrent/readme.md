@@ -1,6 +1,7 @@
 # 安装方法
 
 * maven依赖
+
 ```xml
 <dependency>
   <groupId>cloud.tengyee</groupId>
