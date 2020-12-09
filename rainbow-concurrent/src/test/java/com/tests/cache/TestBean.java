@@ -17,6 +17,7 @@ public class TestBean {
     @Cacheable(value="cacheTest",key = "'hello'+#name",sync = true)
     public ReturnData hello(String name){
         System.out.println("my name is "+name);
+//        throw new RuntimeException();
         return new ReturnData("hello "+name);
     }
 

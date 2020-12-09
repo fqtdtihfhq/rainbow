@@ -3,7 +3,9 @@ gradle.taskGraph.whenReady {
     tasks.each { task ->
         if (task.name.contains("test"))
         {
-            task.enabled = false
+            if(!tasks.getNames().contains("cleanTest")){
+                task.enabled = false
+            }
         }
     }
 }

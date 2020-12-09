@@ -54,6 +54,7 @@ host、port、password、database为redis配置，分别为redis的地址、端�
 
 #### spring-cache知识点扫盲
 
+* 当主体程序抛出异常时，设置缓存无效。
 * 当返回类型为void时，设置缓存永久无效。
 * 默认缓存对象，名字必须为"cacheManager"，如果要设置多个cacheManager，需要使用其它名称，需要在@Cacheable注解里指定。例如：
 
