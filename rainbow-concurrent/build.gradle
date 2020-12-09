@@ -28,3 +28,5 @@ dependencies {
     compile 'org.springframework:spring-context:4.3.9.RELEASE'
     compile 'org.aspectj:aspectjrt:1.8.9'
 }
+//skip Test tasks
+apply from: "${rootDir}/skipTest.gradle"

@@ -32,7 +32,7 @@ public class CacheTest {
 
     }
 
-//    @Test
+    @Test
     public void t1() throws InterruptedException {
         // 定义Spring配置文件的路径
         String xmlPath = "ApplicationContext.xml";

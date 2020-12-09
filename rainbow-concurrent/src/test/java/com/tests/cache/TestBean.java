@@ -14,7 +14,7 @@ public class TestBean {
 
 //    @TyLock(key="hahaha")
 //    @TyCache(value = "cacheTest",key = "'hello'+#name")
-    @Cacheable(value="cacheTest",cacheManager = "redisCacheManager",key = "'hello'+#name",sync = true)
+    @Cacheable(value="cacheTest",key = "'hello'+#name",sync = true)
     public ReturnData hello(String name){
         System.out.println("my name is "+name);
         return new ReturnData("hello "+name);
