@@ -6,7 +6,7 @@
 <dependency>
   <groupId>cloud.tengyee</groupId>
   <artifactId>rainbow-concurrent</artifactId>
-  <version>版本号</version>
+  <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
 
