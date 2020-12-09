@@ -5,7 +5,7 @@
 
 #### 用法
 
-. spring配置
+* spring配置
 ```xml
     <!--命名为cacheManager，表示设置为默认缓存对象-->
     <bean id="cacheManager" class="cloud.tengyee.concurrent.cache.redis.RedisCacheCacheManager">
