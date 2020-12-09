@@ -19,7 +19,7 @@
 ```
 host、port、password、database为redis配置，分别为redis的地址、端口、密码、数据库编号
 
-. json配置
+* json配置
 ```json
 {
   "cacheTest": 100
@@ -27,7 +27,7 @@ host、port、password、database为redis配置，分别为redis的地址、端�
 ```
 其中"cacheTest"为缓存名，100为缓存时间，单位为秒。
 
-. 注解的使用
+* 注解的使用
 ```java
     @Cacheable(value="cacheTest",key = "'hello'+#name",sync = true)
     public ReturnData hello(String name){//注意返回对象ReturnData需要进行序列化，否则会报错
@@ -42,8 +42,8 @@ host、port、password、database为redis配置，分别为redis的地址、端�
 
 #### spring-cache知识点扫盲
 
-. 当返回类型为void时，设置缓存永久无效。
-. 默认缓存对象，名字必须为"cacheManager"，如果要设置多个cacheManager，需要使用其它名称，需要在@Cacheable注解里指定。例如：
+* 当返回类型为void时，设置缓存永久无效。
+* 默认缓存对象，名字必须为"cacheManager"，如果要设置多个cacheManager，需要使用其它名称，需要在@Cacheable注解里指定。例如：
 
 ```xml
     <bean id="ehCacheManagers" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
