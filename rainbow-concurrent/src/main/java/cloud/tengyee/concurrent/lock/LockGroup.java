@@ -14,6 +14,9 @@ public class LockGroup {
 
     public Map<String, Lock> lockStock=new ConcurrentHashMap<>();
 
+    public int getSize(){
+        return lockStock.size();
+    }
     /**
      * 产生锁
      * @param key

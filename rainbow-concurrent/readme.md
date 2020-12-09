@@ -10,6 +10,33 @@
 </dependency>
 ```
 
+# 1.0.1
+
+### 条件锁 @TyLock
+>可以根据方法参数条件来设置锁，参数变量只支持Espl最基本方法，不可使用变量原名，使用arg0,arg1,arg2来指代变量。
+
+#### tyLock配置方法
+
+* spring配置
+```xml
+<bean class="cloud.tengyee.concurrent.lock.aspects.TyLockAspect" />
+```
+
+* java中使用案例
+```java
+    @TyLock(key="'hahaha'+#arg0+'_'+#arg1.name")
+    public ReturnData lockTest(String name,ReturnData data){
+        System.out.println("my name is "+name);
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return new ReturnData("hello "+name);
+    }
+```
+注意上面例子中的参数名，只支持arg类型名字，后面的数字为参数的方法中的位置。
+
 # 1.0.0
 
 ### redis缓存功能
