@@ -15,7 +15,7 @@
 ### redis缓存功能
 >基于spring-cache升级
 
-#### 用法
+#### redis缓存配置方法
 
 * spring配置
 ```xml
