@@ -19,6 +19,7 @@
 
 * spring配置
 ```xml
+<aop:aspectj-autoproxy />
 <bean class="cloud.tengyee.concurrent.lock.aspects.TyLockAspect" />
 ```
 
@@ -47,6 +48,7 @@
 * spring配置
 ```xml
     <!--命名为cacheManager，表示设置为默认缓存对象-->
+    <cache:annotation-driven />
     <bean id="cacheManager" class="cloud.tengyee.concurrent.cache.redis.RedisCacheCacheManager">
         <property name="host" value="192.168.1.195"/>
         <property name="port" value="6379" />
