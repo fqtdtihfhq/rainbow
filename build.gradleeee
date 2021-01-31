@@ -9,7 +9,9 @@ version PROJECT_VERSION
 sourceCompatibility = 1.8
 
 
-apply from: "${rootDir}/uploadToMaven.gradle"
+//apply from: "${rootDir}/uploadToMaven.gradle"
+
+apply from: "${rootDir}/mavenPublish.gradle"
 
 repositories {
     maven {

@@ -9,6 +9,28 @@
   <version>1.0.1-SNAPSHOT</version>
 </dependency>
 ```
+# 1.0.2
+
+### 自动回收线程池
+>自动回收线程池，可以设置回收极限
+
+#### 使用方法
+
+```java
+        RecyclePool pool = new RecyclePool(40, 1);
+        pool.submit(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("进来了=====");
+                try {
+                    Thread.sleep(9000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        LinkedList<Runnable> noDo=pool.unDoShutdown();//已经执行的，继续执行，没下锅的不开始了并返回
+```
 
 # 1.0.1
 

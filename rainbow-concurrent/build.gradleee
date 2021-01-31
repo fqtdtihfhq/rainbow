@@ -3,9 +3,11 @@ plugins {
 }
 
 group 'cloud.tengyee'
-version '1.0.1-SNAPSHOT'
+version '1.0.4-SNAPSHOT'
 
-apply from: "${rootDir}/uploadToMaven.gradle"
+//apply from: "${rootDir}/uploadToMaven.gradle"
+
+apply from: "${rootDir}/mavenPublish.gradle"
 
 sourceCompatibility = 1.8
 

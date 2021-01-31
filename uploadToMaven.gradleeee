@@ -23,5 +23,10 @@ uploadArchives {
         snapshotRepository(url: MAVEN_REPO_SNAPSHOT_URL) {
             authentication(userName: MAVEN_DEPLOY_USER, password: MAVEN_DEPLOY_PASSWORD)
         }
+        pom.project {
+            name = project.name
+            packaging = 'jar'
+            description = 'description'
+        }
     }
 }
