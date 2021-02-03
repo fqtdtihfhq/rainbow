@@ -1,6 +1,7 @@
 package cloud.tengyee.concurrent.threads;
 
 import java.util.LinkedList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -18,7 +19,8 @@ public class RecyclePool {
     private int recycleNum=10000;//回收的线程极限
     private AtomicInteger onQueue;
     private AtomicInteger usedQueue;
-    private LinkedList<Runnable> tasks=new LinkedList<>();//线程队列
+    private AtomicInteger numTest=new AtomicInteger(0);
+    private ConcurrentLinkedQueue<Runnable> tasks=new ConcurrentLinkedQueue<>();//线程队列
 
     private final Object touliaoWait=new Object();//投料等待
 
@@ -67,8 +69,9 @@ public class RecyclePool {
             }
         }
         Runnable task=null;
-        while (!service.isShutdown()&&onQueue.get()<=threadNum&&tasks.size()>0&&(task=tasks.pollFirst())!=null) {
+        while (!service.isShutdown()&&onQueue.get()<=threadNum&&tasks.size()>0&&(task=tasks.poll())!=null) {
             Runnable tuUseTask=task;
+            System.out.println(numTest.incrementAndGet());
             service.submit(new Runnable() {
                     @Override
                     public void run() {
@@ -107,9 +110,9 @@ public class RecyclePool {
      * 没执行的暂时不执行了
      */
     public LinkedList<Runnable> unDoShutdown(){
-        LinkedList<Runnable> oldList=tasks;
-        tasks=new LinkedList<>();
-        return oldList;
+        ConcurrentLinkedQueue<Runnable> oldList=tasks;
+        tasks=new ConcurrentLinkedQueue<>();
+        return new LinkedList<>(oldList);
     }
 
     public int getRecycleNum() {
