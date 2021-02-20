@@ -19,7 +19,6 @@ public class RecyclePool {
     private int recycleNum=10000;//回收的线程极限
     private AtomicInteger onQueue;
     private AtomicInteger usedQueue;
-    private AtomicInteger numTest=new AtomicInteger(0);
     private ConcurrentLinkedQueue<Runnable> tasks=new ConcurrentLinkedQueue<>();//线程队列
 
     private final Object touliaoWait=new Object();//投料等待
@@ -71,7 +70,6 @@ public class RecyclePool {
         Runnable task=null;
         while (!service.isShutdown()&&onQueue.get()<=threadNum&&tasks.size()>0&&(task=tasks.poll())!=null) {
             Runnable tuUseTask=task;
-            System.out.println(numTest.incrementAndGet());
             service.submit(new Runnable() {
                     @Override
                     public void run() {
@@ -117,6 +115,14 @@ public class RecyclePool {
 
     public int getRecycleNum() {
         return recycleNum;
+    }
+
+    /**
+     * 取队列长度
+     * @return 队列长度，正在执行的+还没执行的
+     */
+    public int getQueueNum(){
+        return onQueue.get()+tasks.size();
     }
 
     public void setRecycleNum(int recycleNum) {
