@@ -3,6 +3,7 @@ package com.tests.threads;
 import cloud.tengyee.concurrent.threads.RecyclePool;
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -35,17 +36,19 @@ public class ThreadTest {
     public void t1() throws InterruptedException {
         System.out.println(123);
 //        ExecutorService pool= Executors.newFixedThreadPool(3);
-        RecyclePool pool = new RecyclePool(100, 10000);
+        RecyclePool pool = new RecyclePool(2, 20);
 //        ExecutorService pool=Executors.newFixedThreadPool(100);
         for(int i=0;i<30000;i++){
             final int j=i;
+            Thread.sleep(200L);
             pool.submit(new Runnable() {
                 @Override
                 public void run() {
+                    System.out.println(new Date());
                     y.incrementAndGet();
-                    System.out.println("进来了====="+j+" y:"+y.get());
+                    System.out.println(Thread.currentThread().getId()+" 进来了====="+j+" y:"+y.get());
                     try {
-                        Thread.sleep(10);
+                        Thread.sleep(2000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

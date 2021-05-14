@@ -9,13 +9,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>cloud.tengyee</groupId>
   <artifactId>rainbow-concurrent</artifactId>
-  <version>1.0.4-SNAPSHOT</version>
+  <version>1.0.5-SNAPSHOT</version>
 
   <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
@@ -117,12 +118,12 @@
     <repository>
       <id>releases</id>
       <name>Nexus Release Repository</name>
-      <url>http://192.168.1.195:8822/nexus/content/repositories/releases/</url>
+      <url>http://nexus.20lz.com/repository/maven-releases/</url>
     </repository>
     <snapshotRepository>
       <id>snapshots</id>
       <name>Nexus Snapshot Repository</name>
-      <url>http://192.168.1.195:8822/nexus/content/repositories/snapshots/</url>
+      <url>http://nexus.20lz.com/repository/maven-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 </project>

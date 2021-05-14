@@ -1,9 +1,11 @@
 package cloud.tengyee.concurrent.threads;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -26,6 +28,7 @@ public class RecyclePool {
     private Runnable touliao=new Runnable() {
         @Override
         public void run() {
+//            System.out.println(service);
             touliao();
         }
     };
@@ -68,33 +71,53 @@ public class RecyclePool {
             }
         }
         Runnable task=null;
-        while (!service.isShutdown()&&onQueue.get()<=threadNum&&tasks.size()>0&&(task=tasks.poll())!=null) {
+        ThreadPoolExecutor tpe= (ThreadPoolExecutor) service;
+        while (!service.isShutdown()&&tpe.getQueue().size()<3*threadNum&&tasks.size()>0&&(task=tasks.poll())!=null) {
+//            System.out.println(tpe.getQueue().size());
             Runnable tuUseTask=task;
+            final ExecutorService nowservice=service;
             service.submit(new Runnable() {
                     @Override
                     public void run() {
+//                        System.out.println(new Date());
+//                        System.out.println(nowservice.toString());
+//                        System.out.println(nowservice.isShutdown());
+//                        System.out.println(nowservice.isTerminated());
+                        if (nowservice.isShutdown()) {
+                            submit(tuUseTask);
+                            return;
+                        }
                         onQueue.addAndGet(1);
                         try {
                             tuUseTask.run();
                         } finally {
                             onQueue.addAndGet(-1);
+                            usedQueue.addAndGet(1);
+                            renew(threadNum);
+                            synchronized (touliaoWait){
+                                touliaoWait.notify();
+                            }
                         }
                     }
                 });
-            usedQueue.addAndGet(1);
-            if (usedQueue.get()>=recycleNum) {
-                renew(threadNum);
-            }
+
         }
         putService.submit(touliao);
     }
 
-    public void renew(int threadNum){
+    public synchronized void renew(int threadNum){
+        if (usedQueue!=null&&usedQueue.get()<recycleNum) {
+            return;
+        }
         usedQueue=new AtomicInteger(0);
         if (service != null&&!service.isShutdown()) {
             service.shutdown();
         }
+
+//        System.out.println("renew");
         service=Executors.newFixedThreadPool(threadNum);
+
+//        service=Executors.newSingleThreadExecutor();
     }
 
     public void submit(Runnable task){
